@@ -33,7 +33,9 @@ programa
 			felicidade = felicidade - 3
 			energia = energia - 3
 			escreva("\nSe passaram 8 horas\n")
+			se(doente == falso){
 			doenca = u.sorteia(1, 10)
+			
 			se(doenca <= 3){
 				doente = falso
 			}senao{
@@ -41,17 +43,21 @@ programa
 				escreva("\n", nome, " ficou doente...")
 				escreva("\n   (´- `*)\n")
 			}
+			}
 			se(doente == verdadeiro){
 				horaD++
 				cura = u.sorteia(1, 100)
 					se(cura <= 33 e horaD == 1){
 						doente = falso
+						horaD = -1
 						escreva("\n", (nome)," se curou!\n")
 					}se(cura <= 66 e horaD == 2){
 						doente = falso
+						horaD = -1
 						escreva("\n", (nome), " se curou!\n")
 					}senao se(horaD == 3){
 						doente = falso
+						horaD = -1
 						escreva("\n", (nome), " se curou!\n")
 					}
 				}
@@ -137,12 +143,15 @@ programa
 				cura = u.sorteia(1, 100)
 					se(cura <= 33 e horaD == 1){
 						doente = falso
+						horaD = -1
 						escreva("\n",(nome), " se curou!\n")
 					}se(cura <= 66 e horaD == 2){
 						doente = falso
+						horaD = -1
 						escreva("\n",(nome), " se curou!\n")
 					}senao se(horaD == 3){
 						doente = falso
+						horaD = -1
 						escreva("\n",(nome), " se curou!\n")
 					}
 			}
@@ -208,6 +217,8 @@ programa
 				fome = 0
 				limpeza = 10
 				energia = 10
+				doente = falso
+				horaD = -1
 			}
 			se(felicidade < 1){
 				escreva("\n   _(x_x)_")
@@ -219,7 +230,9 @@ programa
 				felicidade = 5
 				fome = 0
 				limpeza = 10
-				energia = 10	
+				energia = 10
+				doente = falso
+				horaD = -1	
 			}
 				se(fome > 9){
 					escreva("\n   _(x_x)_")
@@ -232,6 +245,8 @@ programa
 					fome = 0
 					limpeza = 10
 					energia = 10
+					doente = falso
+					horaD = -1
 				}
 				se(limpeza < 1){
 					escreva("\n   _(x_x)_")
@@ -244,6 +259,8 @@ programa
 					fome = 0
 					limpeza = 10
 					energia = 10
+					doente = falso
+					horaD = -1
 				}
 				se(felicidade > 10){
 					felicidade = 10
@@ -268,7 +285,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 312; 
+ * @POSICAO-CURSOR = 6214; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
