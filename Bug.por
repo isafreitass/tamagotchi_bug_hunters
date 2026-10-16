@@ -6,6 +6,12 @@ programa
 	{
 
 		inteiro menu, vida = 0, avanco = 0, felicidade = 5, fome = 0, limpeza = 10, joga, bugJoga, energia = 10
+		inteiro doenca, horaD = -1, cura
+		logico doente = falso
+		cadeia nome
+
+		escreva("Você achou um bug! Dê um nome a ele: \n")
+		leia(nome)
 		
 		faca{
 		escreva("\n========MENU========")
@@ -18,21 +24,6 @@ programa
 		escreva("\n7 - Desligar\n")
 		leia(menu)
 
-		se(fome > 7){
-				escreva("\n-->Bug está com fome!\n")
-				escreva("   (´- `*)\n")
-			}
-		se(limpeza < 5){
-				escreva("\n-->Bug precisa de um banho!\n")
-			}
-		se(felicidade < 3){
-				escreva("\n-->Bug está ficando triste!\n")
-				escreva("   (´- `*)\n")
-		}
-		se(energia < 3){
-				escreva("\n-->Bug está com sono!\n")
-				
-		}
 
 		escolha(menu){
 			caso 1:
@@ -41,20 +32,42 @@ programa
 			limpeza = limpeza - 5
 			felicidade = felicidade - 3
 			energia = energia - 3
-			escreva("\nSe passaram 8 horas")
+			escreva("\nSe passaram 8 horas\n")
+			doenca = u.sorteia(1, 10)
+			se(doenca <= 3){
+				doente = falso
+			}senao{
+				doente = verdadeiro
+				escreva("\n", nome, " ficou doente...")
+				escreva("\n   (´- `*)\n")
+			}
+			se(doente == verdadeiro){
+				horaD++
+				cura = u.sorteia(1, 100)
+					se(cura <= 33 e horaD == 1){
+						doente = falso
+						escreva("\n", (nome)," se curou!\n")
+					}se(cura <= 66 e horaD == 2){
+						doente = falso
+						escreva("\n", (nome), " se curou!\n")
+					}senao se(horaD == 3){
+						doente = falso
+						escreva("\n", (nome), " se curou!\n")
+					}
+				}
 			
 			pare
 			
 			caso 2:
 			se(fome > 0 e energia > 0){
-				escreva("\nAlimentando Bug")
+				escreva("\nAlimentando, ", (nome))
 				fome = fome - 4
 				limpeza--
 				escreva("\n ♥☆(^-^)★♥\n")
 			}senao se(fome > 0 e energia < 1){
-				escreva("\nBug está muito cansado para comer!")
+				escreva("\n", (nome), " está muito cansado para comer!")
 			}senao{
-				escreva("\nBug NÃO está com fome")
+				escreva("\n", (nome), " NÃO está com fome")
 				felicidade = felicidade - 2				
 				}
 			
@@ -64,7 +77,7 @@ programa
 			escreva("\nEscolha: Pedra - 1, Papel - 2 ou Tesoura - 3\n")
 			leia(joga)
 			bugJoga = u.sorteia(1, 3)
-			escreva("Bug jogou: ", bugJoga, "\n")
+			escreva((nome), " jogou: ", bugJoga, "\n")
 			se(energia > 0){
 				se(joga > 0 e joga < 4){
 					se(joga == bugJoga){
@@ -75,26 +88,26 @@ programa
 					}
 					senao se((joga == 1 e bugJoga == 3) ou (joga == 2 e bugJoga == 1) ou (joga == 3 e bugJoga == 2)){
 						escreva("\nVocê venceu!")
-						escreva("\n   (´- `*)")
+						escreva("\n   (´- `*)\n")
 						felicidade = felicidade + 3
 						limpeza = limpeza - 2
 						fome = fome + 2
 						energia = energia - 2
 					}senao{
-						escreva("\nBug venceu!!")
-						escreva("\n♥☆(^-^)★♥")
+						escreva("\n",(nome), " venceu!!")
+						escreva("\n♥☆(^-^)★♥\n")
 						felicidade = felicidade + 5
-						limpeza = limpeza - 2
+						limpeza = limpeza - 3
 						fome = fome + 2
-						energia = energia - 2
+						energia = energia - 3
 					}
 				}senao{
 					escreva("\nJogue um número válido...")
-					escreva("\n(  -_-)?")
+					escreva("\n(  -_-)?\n")
 					felicidade--
 				}
 			}senao{
-				escreva("\nBug está muito cansado para jogar!")
+				escreva("\n",(nome), " está muito cansado para jogar!")
 			}
 			
 			pare
@@ -102,10 +115,10 @@ programa
 			caso 4:
 			se(limpeza < 10){
 				escreva("\n˚○☆˚○ ♥...esfregando...˚○˚★˚○ ☆˚")
-				escreva("\nBanho tomado! (#^.^#)")
+				escreva("\nBanho tomado! (#^.^#)\n")
 				limpeza = limpeza + 10
 			}senao{
-				escreva("\nBug já está limpo!")
+				escreva("\n",(nome), " já está limpo!")
 				felicidade = felicidade - 6
 			}
 			
@@ -115,12 +128,26 @@ programa
 			se(energia < 10){
 				avanco = avanco + 1
 				fome = fome + 4
-				limpeza = limpeza - 5
+				limpeza = limpeza - 3
 				felicidade = felicidade - 3
 				energia = energia + 10
-				escreva("\nBug Dormiu 8h!")
+				escreva("\n",(nome), " Dormiu 8h!\n")
+				se(doente == verdadeiro){
+				horaD++
+				cura = u.sorteia(1, 100)
+					se(cura <= 33 e horaD == 1){
+						doente = falso
+						escreva("\n",(nome), " se curou!\n")
+					}se(cura <= 66 e horaD == 2){
+						doente = falso
+						escreva("\n",(nome), " se curou!\n")
+					}senao se(horaD == 3){
+						doente = falso
+						escreva("\n",(nome), " se curou!\n")
+					}
+			}
 			}senao{
-				escreva("\nBug não está com sono!\n")
+				escreva("\n",(nome), " não está com sono!\n")
 				escreva("   (´- `*)\n")
 				felicidade--
 			}
@@ -130,26 +157,51 @@ programa
 
 			caso 6:
 			escreva("\n=======STATUS=======")
+			escreva("\nNome: ", nome)
 			escreva("\nIdade: ", vida)
 			escreva("\nFelicidade: ", felicidade)
 			escreva("\nFome: ", fome)
 			escreva("\nHigiene: ", limpeza)
 			escreva("\nEnergia: ", energia, "\n")
+			se(doente == verdadeiro){
+				escreva("Doente\n")
+			}
+			
 			pare
 			
 			caso 7:
-			escreva("\nDesligando ✖")
+			escreva("\nDesligando ✖\n")
 			pare
 			
 			caso contrario:
-			escreva("\nDigite um número válido.")
+			escreva("\nDigite um número válido.\n")
 		}
+			se(fome > 7){
+				escreva("\n-->",(nome), " está com fome!\n")
+				escreva("   (´- `*)\n")
+			}
+			se(limpeza < 5){
+				escreva("\n-->",(nome), " precisa de um banho!\n")
+			}
+			se(felicidade < 3){
+					escreva("\n-->",(nome), " está ficando triste!\n")
+					escreva("   (´- `*)\n")
+			}
+			se(energia < 3){
+					escreva("\n-->",(nome), " está com sono!\n")
+				
+			}
+			se(doente == verdadeiro){
+					escreva("\n-->",(nome), " está doente!\n")
+			}
+			
 			vida = avanco / 3
+			
 			se(vida == 7){
-				escreva("\nBug viveu ", vida," dias!")
+				escreva("\n",(nome), " viveu ", vida," dias!")
 				escreva("\nVocê venceu!")
 				escreva("\n  (#^.^#)")
-				escreva("\nReiniciando ↻")
+				escreva("\nReiniciando ↻\n")
 				vida = 0
 				avanco = 0
 				felicidade = 5
@@ -159,9 +211,9 @@ programa
 			}
 			se(felicidade < 1){
 				escreva("\n   _(x_x)_")
-				escreva("\nBug morreu de tristeza...")
+				escreva("\n",(nome), " morreu de tristeza...")
 				escreva("\nCom ", vida, " dias de vida.")
-				escreva("\nReiniciando ↻")
+				escreva("\nReiniciando ↻\n")
 				vida = 0
 				avanco = 0
 				felicidade = 5
@@ -171,9 +223,9 @@ programa
 			}
 				se(fome > 9){
 					escreva("\n   _(x_x)_")
-					escreva("\nBug morreu de fome...")
+					escreva("\n",(nome), " morreu de fome...")
 					escreva("\nCom ", vida, " dias de vida.")
-					escreva("\nReiniciando ↻")
+					escreva("\nReiniciando ↻\n")
 					vida = 0
 					avanco = 0
 					felicidade = 5
@@ -183,9 +235,9 @@ programa
 				}
 				se(limpeza < 1){
 					escreva("\n   _(x_x)_")
-					escreva("\nBug morreu de sujeira...")
+					escreva("\n",(nome), " morreu de sujeira...")
 					escreva("\nCom ", vida, " dias de vida.")
-					escreva("\nReiniciando ↻")
+					escreva("\nReiniciando ↻\n")
 					vida = 0
 					avanco = 0
 					felicidade = 5
@@ -216,7 +268,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3349; 
+ * @POSICAO-CURSOR = 312; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
